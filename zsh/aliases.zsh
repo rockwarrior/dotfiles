@@ -111,6 +111,7 @@ alias gd='git diff'
 alias gb='git b'
 alias gba='git b -a'
 alias gbr='git rename'
+alias gbd='git b -d'
 # Staged and cached are the same thing
 alias gdc='git diff --cached -w'
 alias gds='git diff --staged -w'
