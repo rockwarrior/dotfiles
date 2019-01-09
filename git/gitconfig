@@ -44,6 +44,7 @@
   # diff
   d = diff                          # diff unstaged changes
   dc = diff --cached                # diff staged changes
+  dt = difftool
   last = diff HEAD^                 # diff last committed change
 
   # log
