@@ -12,6 +12,10 @@ nnoremap ,yw yiww
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
 nnoremap ,ow "_diwhp
 
+"make j and k work better when text is wrapped
+nnoremap j gj
+nnoremap k gk
+
 "make Y consistent with C and D
 nnoremap Y y$
 function! YRRunAfterMaps()
