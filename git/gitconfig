@@ -27,6 +27,7 @@
 
   # branch
   b = branch -v                     # branch (verbose)
+  rename = branch -m
 
   # commit
   c = commit -m                     # commit with message
@@ -45,6 +46,7 @@
   # diff
   d = diff                          # diff unstaged changes
   dc = diff --cached                # diff staged changes
+  dt = difftool                     # diff using difftool
   last = diff HEAD^                 # diff last committed change
 
   # log
@@ -93,15 +95,15 @@
   svnl = svn log --oneline --show-commit
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[mergetool]
-  prompt = false
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
+#[mergetool]
+#  prompt = false
+#[mergetool "mvimdiff"]
+#  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+#  keepbackup=false
 [merge]
   summary = true
   verbosity = 1
-  tool = mvimdiff
+	tool = Kaleidoscope
 [apply]
   whitespace = nowarn
 [branch]
@@ -121,9 +123,17 @@
   # instead of a/b/c/d as prefixes for patches
   mnemonicprefix = true
 	algorithm = patience
+	tool = Kaleidoscope
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 [include]
   path = .gitconfig.user
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false

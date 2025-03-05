@@ -78,6 +78,7 @@ alias gsh='git show'
 alias gshw='git show'
 alias gshow='git show'
 alias gi='vim .gitignore'
+alias gca='git ci -am'
 alias gcm='git ci -m'
 alias gcim='git ci -m'
 alias gci='git ci'
@@ -85,6 +86,7 @@ alias gco='git co'
 alias gcp='git cp'
 alias ga='git add -A'
 alias gap='git add -p'
+alias gau='git add -u'
 alias guns='git unstage'
 alias gunc='git uncommit'
 alias gm='git merge'
@@ -97,7 +99,7 @@ alias gr='git rebase'
 alias gra='git rebase --abort'
 alias ggrc='git rebase --continue'
 alias gbi='git rebase --interactive'
-alias gl='git l'
+alias gl='git l -10'
 alias glg='git l'
 alias glog='git l'
 alias co='git co'
@@ -107,7 +109,11 @@ alias gfa='git fetch --all'
 alias gfap='git fetch --all --prune'
 alias gfch='git fetch'
 alias gd='git diff'
+alias gdt='git dt'
 alias gb='git b'
+alias gba='git b -a'
+alias gbr='git rename'
+alias gbd='git b -D'
 # Staged and cached are the same thing
 alias gdc='git diff --cached -w'
 alias gds='git diff --staged -w'
@@ -126,10 +132,16 @@ alias gclndfx='git clean -dfx'
 alias gsm='git submodule'
 alias gsmi='git submodule init'
 alias gsmu='git submodule update'
-alias gt='git t'
+
+# git tag
+alias gt='git t -n' # list tags
+function gnt() {git tag -a "$1" -m "$2"} # git new tag
+function gtu() {git tag "$1" "$1"^{} -f -m "$2"} # git tag update message
+
 alias gbg='git bisect good'
 alias gbb='git bisect bad'
 alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gls='git rev-parse --abbrev-ref HEAD | xargs git ls-tree --name-only'
 
 # Common shell functions
 alias less='less -r'
@@ -138,6 +150,10 @@ alias l='less'
 alias lh='ls -alt | head' # see the last modified files
 alias screen='TERM=screen screen'
 alias cl='clear'
+alias rm="echo Use 'trash' instead"
+alias xx='trash'
+alias gnr='grep -lnR'
+alias finame='find . -iname'
 
 # Zippin
 alias gz='tar -zcvf'
@@ -167,6 +183,8 @@ alias todo='open nvalt://find/todo'
 
 # Forward port 80 to 3000
 alias portforward='sudo ipfw add 1000 forward 127.0.0.1,3000 ip from any to any 80 in'
+
+alias nc='rlwrap nc'
 
 alias rdm='rake db:migrate'
 alias rdmr='rake db:migrate:redo'
